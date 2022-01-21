@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <title>Add a raster tile source</title>
+    <title>東京災害マップ</title>
     <meta
       name="viewport"
       content="initial-scale=1,maximum-scale=1,user-scalable=no"
@@ -39,9 +39,7 @@
             },
             dronebird: {
               type: "raster",
-              tiles: [
-                "https://tiles.openaerialmap.org/5dade1ce73c69f000530ee5d/0/5dade1ce73c69f000530ee5e/{z}/{x}/{y}",
-              ],
+              tiles: ["futakotamagawac_ RT/{z}/{x}/{y}.png"],
               tileSize: 256,
               attribution:
                 'Map tiles by <a target="_top" rel="noopener" href="http://furuhashilab.com/">Furuhashi Lab.</a>, under <a target="_top" rel="noopener" href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a>. Data by <a target="_top" rel="noopener" href="http://openstreetmap.org">OpenStreetMap</a>, under <a target="_top" rel="noopener" href="http://creativecommons.org/licenses/by-sa/3.0">CC BY SA</a>',
@@ -65,25 +63,21 @@
               id: "dronebird",
               type: "raster",
               source: "dronebird",
-              minzoom: 10,
+              minzoom: 15,
               maxzoom: 22,
             },
             // {
             //   id: "evacuationcenter",
-            //   type: "line",
+            //   layout: {
+            //     "icon-image": "store-icon",
+            //   },
+            //   paint: {},
             //   source: "evacuationcenter",
+            //   source-layer: "setagaya",
+            //   type: "symbol",
             //   minzoom: 10,
             //   maxzoom: 22,
             // },
-            {
-              id: "evacuationcenter",
-              source: "evacuationcenter",
-              "source-layer": "water",
-              type: "symbol",
-              paint: {
-                "fill-color": "#00ffff",
-              },
-            },
           ],
         },
         center: [139.62756, 35.60882], // starting position
