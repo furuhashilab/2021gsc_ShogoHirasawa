@@ -39,9 +39,7 @@
             },
             dronebird: {
               type: "raster",
-              tiles: [
-                "https://furuhashilab.github.io/2021gsc_ShogoHirasawa/futakotamagawac_RT/{z}/{x}/{y}",
-              ],
+              tiles: ["futakotamagawac_ RT.png/{z}/{x}/{y}.png"], //自身のローカルのパス
               tileSize: 256,
               attribution:
                 'Map tiles by <a target="_top" rel="noopener" href="http://furuhashilab.com/">Furuhashi Lab.</a>, under <a target="_top" rel="noopener" href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a>. Data by <a target="_top" rel="noopener" href="http://openstreetmap.org">OpenStreetMap</a>, under <a target="_top" rel="noopener" href="http://creativecommons.org/licenses/by-sa/3.0">CC BY SA</a>',
@@ -65,8 +63,8 @@
               id: "dronebird",
               type: "raster",
               source: "dronebird",
-              minzoom: 15,
-              maxzoom: 21,
+              minzoom: 0,
+              // maxzoom: 22,
             },
             // {
             //   id: "evacuationcenter",
