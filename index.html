@@ -29,45 +29,61 @@
         container: "map", // container id
         style: {
           version: 8,
-          "sources": {
-            "vector-tiles": {
-              "type": "vector",
-              "tiles" : ["https://furuhashilab.github.io/2021gsc_ShogoHirasawa/Tokyo_VT/{z}/{x}/{y}.pbf"],
-              "tileSize": 256,
-              "attribution":
+          sources: {
+            "raster-tiles": {
+              type: "raster",
+              tiles: ["http://a.tile.openstreetmap.org/{z}/{x}/{y}.png"],
+              tileSize: 256,
+              attribution:
                 'Map tiles by <a target="_top" rel="noopener" href="http://stamen.com">Stamen Design</a>, under <a target="_top" rel="noopener" href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a>. Data by <a target="_top" rel="noopener" href="http://openstreetmap.org">OpenStreetMap</a>, under <a target="_top" rel="noopener" href="http://creativecommons.org/licenses/by-sa/3.0">CC BY SA</a>',
             },
-            "futakotamagawa": {
-              "type": "raster",
-              "tiles": ["https://furuhashilab.github.io/2021gsc_ShogoHirasawa/futakotamagawac_ RT/{z}/{x}/{y}.png"],
-              "tileSize": 256,
-              "attribution":
+            dronebird: {
+              type: "raster",
+              tiles: [
+                "https://furuhashilab.github.io/2021gsc_ShogoHirasawa/futakotamagawac_ RT/{z}/{x}/{y}.png",
+              ], 
+              tileSize: 256,
+              attribution:
                 'Map tiles by <a target="_top" rel="noopener" href="http://furuhashilab.com/">Furuhashi Lab.</a>, under <a target="_top" rel="noopener" href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a>. Data by <a target="_top" rel="noopener" href="http://openstreetmap.org">OpenStreetMap</a>, under <a target="_top" rel="noopener" href="http://creativecommons.org/licenses/by-sa/3.0">CC BY SA</a>',
             },
-
+            evacuationcenter: {
+              tiles: [
+                "https://furuhashilab.github.io/2021gsc_ShogoHirasawa/evacuation_center_VT/{z}/{x}/{y}.pbf",
+              ],
+              type: "vector",
             },
           },
-          "layers": [
+          layers: [
             {
-              "id":  "lowest-background",
-              "type":  "fill",
-              "source-layer":  "Tokyo_VT",
-              "source":  "vector-tiles",
-             " minzoom":  0,
-              "maxzoom":  22,
+              id: "lowest-background",
+              type: "raster",
+              source: "raster-tiles",
+              minzoom: 0,
+              maxzoom: 22,
             },
             {
-              "id": "futakotamagawa",
-              "type": "raster",
-              "source": "futakotamagawa",
-              "minzoom": 0,
-              "maxzoom": 22,
+              id: "dronebird",
+              type: "raster",
+              source: "dronebird",
+              minzoom: 0,
+              maxzoom: 22,
             },
-
+            // {
+            //   id: "evacuationcenter",
+            //   layout: {
+            //     "icon-image": "store-icon",
+            //   },
+            //   paint: {},
+            //   source: "evacuationcenter",
+            //   source-layer: "setagaya",
+            //   type: "symbol",
+            //   minzoom: 10,
+            //   maxzoom: 22,
+            // },
           ],
         },
-        "center":[139.62756, 35.60882], // starting position
-        "zoom" : 14, // starting zoom
+        center: [139.62756, 35.60882], // starting position
+        zoom: 14, // starting zoom
       });
     </script>
   </body>
