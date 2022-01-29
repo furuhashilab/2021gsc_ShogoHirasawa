@@ -27,6 +27,7 @@
     <script>
       var map = new maplibregl.Map({
         container: "map", // container id
+        
         style: {
           version: 8,
           sources: {
@@ -41,6 +42,13 @@
               type: "vector",
               tiles: [
                 "https://furuhashilab.github.io/2021gsc_ShogoHirasawa/road_VT/{z}/{x}/{y}.pbf",
+              ],
+              tileSize: 512,
+            },
+            setagaya_evacuation: {
+              type: "vector",
+              tiles: [
+                "https://furuhashilab.github.io/2021gsc_ShogoHirasawa/evacuation_center_VT/{z}/{x}/{y}.pbf",
               ],
               tileSize: 512,
             },
@@ -69,6 +77,18 @@
               source: "dronebird",
               minzoom: 0,
               maxzoom: 22,
+            },
+            {
+              id: "evacuation",
+              type: "symbol",
+              "source-layer": "setagaya_evacuation_VT",
+              source: "setagaya_evacuation",
+              minzoom: 12,
+              maxzoom: 17,
+              layout: {
+                "icon-image": "cat", // reference the image
+                "icon-size": 0.25,
+              },
             },
           ],
         },
