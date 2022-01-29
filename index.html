@@ -27,7 +27,7 @@
     <script>
       var map = new maplibregl.Map({
         container: "map", // container id
-        
+
         style: {
           version: 8,
           sources: {
@@ -38,7 +38,7 @@
               attribution:
                 'Map tiles by <a target="_top" rel="noopener" href="http://stamen.com">Stamen Design</a>, under <a target="_top" rel="noopener" href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a>. Data by <a target="_top" rel="noopener" href="http://openstreetmap.org">OpenStreetMap</a>, under <a target="_top" rel="noopener" href="http://creativecommons.org/licenses/by-sa/3.0">CC BY SA</a>',
             },
-            vectortiles: {
+            road: {
               type: "vector",
               tiles: [
                 "https://furuhashilab.github.io/2021gsc_ShogoHirasawa/road_VT/{z}/{x}/{y}.pbf",
@@ -49,6 +49,13 @@
               type: "vector",
               tiles: [
                 "https://furuhashilab.github.io/2021gsc_ShogoHirasawa/evacuation_center_VT/{z}/{x}/{y}.pbf",
+              ],
+              tileSize: 512,
+            },
+            buildings: {
+              type: "vector",
+              tiles: [
+                "https://furuhashilab.github.io/2021gsc_ShogoHirasawa/buildings_VT/{z}/{x}/{y}.pbf",
               ],
               tileSize: 512,
             },
@@ -67,9 +74,20 @@
               id: "road",
               type: "line",
               "source-layer": "road_VT",
-              source: "vectortiles",
+              source: "road",
               minzoom: 12,
               maxzoom: 17,
+            },
+            {
+              id: "buildings",
+              type: "fill",
+              "source-layer": "buildings_VT",
+              source: "buildings",
+              minzoom: 12,
+              maxzoom: 17,
+              paint: {
+                "fill-color": ["rgb", 240, 128, 128],
+              },
             },
             {
               id: "dronebird",
@@ -78,18 +96,19 @@
               minzoom: 0,
               maxzoom: 22,
             },
-            {
-              id: "evacuation",
-              type: "symbol",
-              "source-layer": "setagaya_evacuation_VT",
-              source: "setagaya_evacuation",
-              minzoom: 12,
-              maxzoom: 17,
-              layout: {
-                "icon-image": "cat", // reference the image
-                "icon-size": 0.25,
-              },
-            },
+            // 避難所のプロットがまだ理解できていないので、この部分はコメントアウトしておく。
+            // {
+            //   id: "evacuation",
+            //   type: "symbol",
+            //   "source-layer": "setagaya_evacuation_VT",
+            //   source: "setagaya_evacuation",
+            //   minzoom: 12,
+            //   maxzoom: 17,
+            //   layout: {
+            //     "icon-image": "cat", // reference the image
+            //     "icon-size": 0.25,
+            //   },
+            // },
           ],
         },
         center: [139.62756, 35.60882], // starting position
