@@ -37,29 +37,31 @@
               attribution:
                 'Map tiles by <a target="_top" rel="noopener" href="http://stamen.com">Stamen Design</a>, under <a target="_top" rel="noopener" href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a>. Data by <a target="_top" rel="noopener" href="http://openstreetmap.org">OpenStreetMap</a>, under <a target="_top" rel="noopener" href="http://creativecommons.org/licenses/by-sa/3.0">CC BY SA</a>',
             },
+            vectortiles: {
+              type: "vector",
+              tiles: [
+                "https://furuhashilab.github.io/2021gsc_ShogoHirasawa/road_VT/{z}/{x}/{y}.pbf",
+              ],
+              tileSize: 512,
+            },
             dronebird: {
               type: "raster",
               tiles: [
                 "https://furuhashilab.github.io/2021gsc_ShogoHirasawa/futakotamagawac_ RT/{z}/{x}/{y}.png",
-              ], 
+              ],
               tileSize: 256,
               attribution:
                 'Map tiles by <a target="_top" rel="noopener" href="http://furuhashilab.com/">Furuhashi Lab.</a>, under <a target="_top" rel="noopener" href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a>. Data by <a target="_top" rel="noopener" href="http://openstreetmap.org">OpenStreetMap</a>, under <a target="_top" rel="noopener" href="http://creativecommons.org/licenses/by-sa/3.0">CC BY SA</a>',
             },
-            evacuationcenter: {
-              tiles: [
-                "https://furuhashilab.github.io/2021gsc_ShogoHirasawa/evacuation_center_VT/{z}/{x}/{y}.pbf",
-              ],
-              type: "vector",
-            },
           },
           layers: [
             {
-              id: "lowest-background",
-              type: "raster",
-              source: "raster-tiles",
-              minzoom: 0,
-              maxzoom: 22,
+              id: "road",
+              type: "line",
+              "source-layer": "road_VT",
+              source: "vectortiles",
+              minzoom: 12,
+              maxzoom: 17,
             },
             {
               id: "dronebird",
@@ -68,18 +70,6 @@
               minzoom: 0,
               maxzoom: 22,
             },
-            // {
-            //   id: "evacuationcenter",
-            //   layout: {
-            //     "icon-image": "store-icon",
-            //   },
-            //   paint: {},
-            //   source: "evacuationcenter",
-            //   source-layer: "setagaya",
-            //   type: "symbol",
-            //   minzoom: 10,
-            //   maxzoom: 22,
-            // },
           ],
         },
         center: [139.62756, 35.60882], // starting position
