@@ -44,13 +44,13 @@
               ],
               tileSize: 512,
             },
-            setagaya_evacuation: {
-              type: "vector",
-              tiles: [
-                "https://furuhashilab.github.io/2021gsc_ShogoHirasawa/evacuation_center_VT/{z}/{x}/{y}.pbf",
-              ],
-              tileSize: 512,
-            },
+            // setagaya_evacuation: {
+            //   type: "vector",
+            //   tiles: [
+            //     "https://furuhashilab.github.io/2021gsc_ShogoHirasawa/evacuation_center_VT/{z}/{x}/{y}.pbf",
+            //   ],
+            //   tileSize: 512,
+            // },
 
             buildings: {
               type: "vector",
@@ -93,33 +93,48 @@
               id: "dronebird",
               type: "raster",
               source: "dronebird",
-              minzoom: 0,
-              maxzoom: 22,
-            },
-            {
-              id: "evacuation",
-              type: "symbol",
-              "source-layer": "setagaya_evacuation_VT",
-              source: "setagaya_evacuation",
               minzoom: 12,
               maxzoom: 17,
-              layout: {
-                "icon-image": "evacuation",
-                icon
-              },
-              paint: {},
             },
+            // {
+            //   id: "evacuation",
+            //   type: "symbol",
+            //   "source-layer": "setagaya_evacuation_VT",
+            //   source: "setagaya_evacuation",
+            //   minzoom: 12,
+            //   maxzoom: 17,
+            //   layout: {
+            //     "icon-image": "evacuation",
+            //   },
+            //   paint: {},
+            // },
           ],
         },
         center: [139.62756, 35.60882], // starting position
         zoom: 14, // starting zoom
       });
-      map.on("load", () => {
+      map.on("load", function () {
         map.loadImage(
-          "https://github.com/furuhashilab/2021gsc_ShogoHirasawa/blob/main/image/家アイコン.png",
-          (error, image) => {
+          "https://furuhashilab.github.io/2021gsc_ShogoHirasawa/image/house.png",
+          function (error, image) {
             if (error) throw error;
-            map.addImage("evacuation", image, { sdf: true });
+            map.addImage("evacuation", image);
+            map.addSource("setagaya_evacuation", {
+              type: "vector",
+              tiles: [
+                "https://furuhashilab.github.io/2021gsc_ShogoHirasawa/evacuation_center_VT/{z}/{x}/{y}.pbf",
+              ],
+              tileSize: 512,
+            });
+            map.addLayer({
+              id: "evacuation",
+              type: "symbol",
+              source: "setagaya_evacuation",
+              layout: {
+                "icon-image": "evacuation",
+                "icon-size": 0.25,
+              },
+            });
           }
         );
       });
