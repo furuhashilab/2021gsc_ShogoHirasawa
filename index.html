@@ -26,8 +26,7 @@
     <div id="map"></div>
     <script>
       var map = new maplibregl.Map({
-        container: "map", // container id
-
+        container: "map",
         style: {
           version: 8,
           sources: {
@@ -52,6 +51,7 @@
               ],
               tileSize: 512,
             },
+
             buildings: {
               type: "vector",
               tiles: [
@@ -96,23 +96,32 @@
               minzoom: 0,
               maxzoom: 22,
             },
-            // 避難所のプロットがまだ理解できていないので、この部分はコメントアウトしておく。
-            // {
-            //   id: "evacuation",
-            //   type: "symbol",
-            //   "source-layer": "setagaya_evacuation_VT",
-            //   source: "setagaya_evacuation",
-            //   minzoom: 12,
-            //   maxzoom: 17,
-            //   layout: {
-            //     "icon-image": "cat", // reference the image
-            //     "icon-size": 0.25,
-            //   },
-            // },
+            {
+              id: "evacuation",
+              type: "symbol",
+              "source-layer": "setagaya_evacuation_VT",
+              source: "setagaya_evacuation",
+              minzoom: 12,
+              maxzoom: 17,
+              layout: {
+                "icon-image": "evacuation",
+                icon
+              },
+              paint: {},
+            },
           ],
         },
         center: [139.62756, 35.60882], // starting position
         zoom: 14, // starting zoom
+      });
+      map.on("load", () => {
+        map.loadImage(
+          "https://github.com/furuhashilab/2021gsc_ShogoHirasawa/blob/main/image/家アイコン.png",
+          (error, image) => {
+            if (error) throw error;
+            map.addImage("evacuation", image, { sdf: true });
+          }
+        );
       });
     </script>
   </body>
