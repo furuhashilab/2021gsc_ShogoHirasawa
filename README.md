@@ -27,5 +27,7 @@ What have you learned from the study? この研究を通じて得られたもの
 ## Acknowledgements/謝辞:
 本研究を進めるにあたり〇〇〇の〇〇氏をはじめ多くの方々より多大な助言を賜りました。厚く感謝を申し上げます。
 
+© FuruhashiLabratory/ShogoHirasawa, CC BY 4.0
+
 
     
