@@ -7,11 +7,8 @@
       name="viewport"
       content="initial-scale=1,maximum-scale=1,user-scalable=no"
     />
-    <script src="https://unpkg.com/maplibre-gl@1.15.2/dist/maplibre-gl.js"></script>
-    <link
-      href="https://unpkg.com/maplibre-gl@1.15.2/dist/maplibre-gl.css"
-      rel="stylesheet"
-    />
+    <script src="maplibre-gl.js"></script>
+    <link href="maplibre-gl.css" rel="stylesheet" />
     <style>
       body {
         margin: 0;
@@ -113,7 +110,7 @@
             // },
           ],
         },
-        center: [139.62756, 35.60882], // starting position
+        center: [139.63095, 35.61473], // starting position
         zoom: 14, // starting zoom
       });
       map.on("load", function () {
@@ -135,10 +132,10 @@
               "source-layer": "evacuation_VT",
               layout: {
                 "icon-image": "evacuation",
-                "icon-size": 0.5,
+                "icon-size": 0.2,
               },
               minzoom: 0,
-              maxzoom: 20,
+              maxzoom: 22,
             });
           }
         );
