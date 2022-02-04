@@ -6,7 +6,7 @@
 
 指導教員 古橋大地 教授
 
-©︎Furuhashi Laboratory/SHOGO HIRASAWA, CC BY 4.0
+©︎Furuhashi Laboratory/HIRASAWA SHOGO, CC BY 4.0
 
 ## Introduction:
 
