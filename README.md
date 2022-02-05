@@ -10,11 +10,11 @@
 
 ## Introduction:
 
-地理情報システム（Geographic Information System; 以下 GIS）は自然災害における災害対応の場面で利活用されており、国内では 1995 年 兵庫県南部地震(1)以降、国外では 2010 年 ハイチ地震(2)を皮切りにその事例及び、研究が蓄積されてきた。災害発生直後、被害軽減のためには、自治体等の災害対策本部が GIS を用いて、現地の状況をいち早く把握し、的確な災害対応を実現することが重要である。これまでに、災害直後の対策を支援する GIS ツールや技術は数多く研究されてきた（3),(4),(5)。こういった先行研究を俯瞰してみると、災害直後の状況把握をするため手法として Web-GIS(5)が用いられていることがわかった。つまり、災害直後の現場把握を行う際にはインターネット環境があり、それにアクセスできることが前提とされている。2010 年 ハイチ地震発生時、ネットにアクセスできるハイチ人は国民全体の 11%であった（6)。2022 年 トンガの海底火山噴火では、海底ケーブルが切断され、インターネット環境から断絶する事態も起きた（7)。災害発生時には往々にしてインターネットに接続できない状況が発生するにも関わらず、オフライン環境前提として、GIS を活用する災害対応システムの提案はなされていない。そこで本研究は、自治体等の災害対策本部がオフライン環境を前提とした時に利活用することができる災害対応システムの提案を行う。
+地理情報システム（Geographic Information System; 以下 GIS）は自然災害における災害対応の場面で利活用されており、国内では 1995 年 兵庫県南部地震(碓井, 2004)以降、国外では 2010 年 ハイチ地震(川崎・目黒, 2010)を皮切りにその事例及び、研究が蓄積されてきた。災害発生直後、被害軽減のためには、自治体等の災害対策本部が GIS を用いて、現地の状況をいち早く把握し、的確な災害対応を実現することが重要である。これまでに、災害直後の対策を支援する GIS ツールや技術は数多く研究されてきた（井上 et al, 2006)、(佐野 et al, 2016)、(田口 et al, 2015)。こういった先行研究を俯瞰してみると、災害直後の状況把握をするため手法として Web-GIS(田口 et al, 2015)が用いられていることがわかった。つまり、災害直後の現場把握を行う際にはインターネット環境があり、それにアクセスできることが前提とされている。2010 年 ハイチ地震発生時、ネットにアクセスできるハイチ人は国民全体の 11%であった（CNN, 2010)。2022 年 トンガの海底火山噴火では、海底ケーブルが切断され、インターネット環境から断絶する事態も起きた（朝日新聞, 2022)。災害発生時には往々にしてインターネットに接続できない状況が発生するにも関わらず、オフライン環境前提として、GIS を活用する災害対応システムの提案はなされていない。そこで本研究は、自治体等の災害対策本部がオフライン環境を前提とした時に利活用することができる災害対応システムの提案を行う。
 
 ## Methods:
 
-オフライン環境でも機能する GIS ツールを制作するために、The United Nations Vector Tile Toolkit（以下 UNVT）(8)を活用した。UNVT は UN Open GIS Initiative(9)のプロジェクトの 1 つとして採択されているもので、地図の整備が不十分な国の地域のデジタル地図の拡充を目的としたオープンソースのプロジェクトである。UNVT の技術をアップグレードさせ、Raspberry Pi を用いたオフライン環境下で動くオープンソース・ウェブ地図サーバー（以下 UNVT Portable）を完成させ、インターネットが無い環境でも災害対策本部が GIS を用いた災害対応を行うことを可能にした。以下に、UNVT Portable の実装工程を記述する。
+オフライン環境でも機能する GIS ツールを制作するために、The United Nations Vector Tile Toolkit（以下 UNVT）(UNVT, 2022)を活用した。UNVT は UN Open GIS Initiative(UN Open GIS Initiative, 2022)のプロジェクトの 1 つとして採択されているもので、地図の整備が不十分な国の地域のデジタル地図の拡充を目的としたオープンソースのプロジェクトである。UNVT の技術をアップグレードさせ、Raspberry Pi を用いたオフライン環境下で動くオープンソース・ウェブ地図サーバー（以下 UNVT Portable）を完成させ、インターネットが無い環境でも災害対策本部が GIS を用いた災害対応を行うことを可能にした。以下に、UNVT Portable の実装工程を記述する。
 
 次の 3 つの工程に分けて実装を行った。1.UNVT Portabl アクセスポイント化 2.タイルデータの制作 3.html ファイルの実装。この順番に沿って、各実装の詳細を紹介する。
 
@@ -43,10 +43,14 @@ Mac と UNVT Portable を Ethernet ケーブルで有線接続している状態
 UNVTPortable としての現状の完成度は 80%程であると考える。ウェブ地図サーバーとして機能させるために毎回、コマンド入力が必要なため、コマンド入力を不要にさせ、電源を入れるだけでサーバーとして機能させることがゴールである。併せて、東京都をテキストエリアとして、行政が公開するオープンデータと、ベースマップとしての OpenStreetMap データを組み合わせ、プリインストールデータセットの試作も必要である。また、現行の UNVTPortable は静的な Web 地図しか表示ができない。刻一刻と変化する災害後の地理データの編集をオフライン環境下でもが行えるようにすることで、Web-GIS の補完能力がより高まるのと同時に、災害直後の判断支援ツールとしてより価値のあるものになると考える。
 
 ## Reference/参考文献:
-
-１)碓井照子: 阪神・淡路大震災と国土空間基盤整備、地理空間情報科学事典（地理情報システム学会編）、
-2004、pp.394-397
-2 )https://www.jstage.jst.go.jp/article/seisankenkyu/62/4/62_4_409/_pdf/-char/ja 3)https://ipsj.ixsq.nii.ac.jp/ej/?action=pages_view_main&active_action=repository_view_main_item_detail&item_id=39389&item_no=1&page_id=13&block_id=8 4)https://www.jstage.jst.go.jp/article/ajg/2016a/0/2016a_100175/_pdf/-char/ja 5)https://www.jstage.jst.go.jp/article/jaee/15/1/15_1_101/_pdf 6)http://edition.cnn.com/2010/TECH/01/20/haiti.amateur.radio/index.html 7)https://www.asahi.com/articles/ASQ1L5GMTQ1LUHBI02V.html 8)https://unvt.github.io/
+照子碓井. (2004). 阪神・淡路大震災と国土空間基盤整備、地理空間情報科学事典. Retrieved May 2, 2022, from   
+2 )https://www.jstage.jst.go.jp/article/seisankenkyu/62/4/62_4_409/_pdf/-char/ja 
+3)https://ipsj.ixsq.nii.ac.jp/ej/?action=pages_view_main&active_action=repository_view_main_item_detail&item_id=39389&item_no=1&page_id=13&block_id=8 
+4)https://www.jstage.jst.go.jp/article/ajg/2016a/0/2016a_100175/_pdf/-char/ja 
+5)https://www.jstage.jst.go.jp/article/jaee/15/1/15_1_101/_pdf 
+6)http://edition.cnn.com/2010/TECH/01/20/haiti.amateur.radio/index.html 
+7)https://www.asahi.com/articles/ASQ1L5GMTQ1LUHBI02V.html 
+8)https://unvt.github.io/
 (9)http://unopengis.org/unopengis/about/about05.php
 
 ## Acknowledgements/謝辞:
